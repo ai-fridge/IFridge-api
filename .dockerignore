@@ -1,0 +1,10 @@
+.*
+**/*.pyc
+*.sqlite
+media
+static
+.cache
+.tox
+.tx
+__pycache__
+node_modules/

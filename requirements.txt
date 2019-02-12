@@ -1,0 +1,9 @@
+django
+djangorestframework
+mysqlclient
+uwsgi
+celery
+redis
+numpy
+face-recognition
+isort
