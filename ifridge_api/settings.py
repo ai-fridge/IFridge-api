@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 # TODO: Unrestricted access is fine for local development, but in a production environment you may need to restrict access to certain endpoints.
@@ -142,6 +145,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# CORS
+# https://github.com/ottoyiu/django-cors-headers/
+CORS_ORIGIN_WHITELIST = (
+    '127.0.0.1:3000'
+)
 
 
 # Static files (CSS, JavaScript, Images)
