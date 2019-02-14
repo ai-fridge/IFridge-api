@@ -19,7 +19,7 @@ def verify_face_recognition(request):
         data = request.data
 
         if is_base64_image(data['file']):
-            b64_string = is_base64_image(data['file'])
+            b64_string = getBase64Str(data['file'])
         else:
             return Response({"error": "base64 image format is not correct"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -83,7 +83,7 @@ def detect_faces_in_image(file_stream):
 
     # app.logger.info(unknown_face_encodings)
     face_found = False
-    is_authentication = False
+    is_face_authentication = False
 
     if len(unknown_face_encodings) > 0:
         face_found = True
@@ -92,13 +92,13 @@ def detect_faces_in_image(file_stream):
         match_results = face_recognition.compare_faces([known_face_encoding], unknown_face_encodings[0], tolerance=0.5)
         # match_results = face_recognition.compare_faces([known_face_encoding], unknown_face_encodings[0], tolerance=0.45)
         if match_results[0]:
-            is_authentication = True
+            is_face_authentication = True
             name = known_face_names[0]
 
     # Return the result as json
     result = {
-        "is_face_found": face_found,
-        "is_authentication": is_authentication,
+        "isFaceFound": face_found,
+        "isFaceAuthentication": is_face_authentication,
         "name": name
     }
 
@@ -135,5 +135,8 @@ def is_base64_image(base64_string):
     elif 'base64' not in base64_string:
         logger.warning('it is not base64.')
         return False
+    return True
 
+
+def getBase64Str(base64_string):
     return re.sub('^data:image/.+;base64,', '', base64_string)
