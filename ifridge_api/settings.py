@@ -151,7 +151,11 @@ USE_TZ = True
 # https://github.com/ottoyiu/django-cors-headers/
 CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:3000'
+    'localhost:3000'
 )
+
+# CORS_URLS_REGEX
+# CORS_URLS_REGEX = r'^/api/.*$'
 
 
 # Static files (CSS, JavaScript, Images)
